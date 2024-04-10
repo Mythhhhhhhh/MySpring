@@ -1,4 +1,4 @@
-package cn.myth.springframework.beans.factory;
+package cn.myth.springframework.beans;
 
 public class BeansException extends RuntimeException{
 

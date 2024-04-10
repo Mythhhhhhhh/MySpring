@@ -1,6 +1,6 @@
 package cn.myth.springframework.beans.factory.support;
 
-import cn.myth.springframework.beans.factory.BeansException;
+import cn.myth.springframework.beans.BeansException;
 import cn.myth.springframework.beans.factory.config.BeanDefinition;
 
 import java.lang.reflect.Constructor;

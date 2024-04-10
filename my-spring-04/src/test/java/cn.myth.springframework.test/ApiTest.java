@@ -7,6 +7,7 @@ import cn.myth.springframework.beans.factory.config.BeanReference;
 import cn.myth.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.myth.springframework.test.bean.UserDao;
 import cn.myth.springframework.test.bean.UserService;
+import cn.myth.springframework.test.bean.UserService2;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;
@@ -60,6 +61,56 @@ public class ApiTest {
 
         // 5. UserService 获取bean
         UserService userService = (UserService) beanFactory.getBean("userService");
+        userService.queryUserInfo();
+    }
+
+    @Test
+    public void test_BeanFactory2() {
+        // 1.初始化 BeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 2. 注入bean
+        BeanDefinition beanDefinition = new BeanDefinition(UserService2.class);
+        beanFactory.registerBeanDefinition("userService", beanDefinition);
+
+        // 3.获取bean
+        UserService2 userService = (UserService2) beanFactory.getBean("userService", "Myth");
+        userService.queryUserInfo();
+    }
+
+    @Test
+    public void test_BeanFactory3() {
+        // 1.初始化 BeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 2. 设置属性
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("name", "Myth2"));
+
+        // 3. 注入bean
+        BeanDefinition beanDefinition = new BeanDefinition(UserService2.class, propertyValues);
+        beanFactory.registerBeanDefinition("userService", beanDefinition);
+
+        // 4.获取bean
+        UserService2 userService = (UserService2) beanFactory.getBean("userService");
+        userService.queryUserInfo();
+    }
+
+    @Test
+    public void test_BeanFactory4() {
+        // 1.初始化 BeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 2. 设置属性
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("name", "Myth2"));
+
+        // 3. 注入bean
+        BeanDefinition beanDefinition = new BeanDefinition(UserService2.class, propertyValues);
+        beanFactory.registerBeanDefinition("userService", beanDefinition);
+
+        // 4.获取bean
+        UserService2 userService = (UserService2) beanFactory.getBean("userService", "Myth3");
         userService.queryUserInfo();
     }
 

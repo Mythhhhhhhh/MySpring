@@ -1,4 +1,4 @@
-package cn.myth.springframework.beans.factory;
+package cn.myth.springframework.beans;
 
 /**
  *  bean属性信息

@@ -1,4 +1,4 @@
-package cn.myth.springframework.beans.factory;
+package cn.myth.springframework.beans;
 
 import java.util.ArrayList;
 import java.util.List;

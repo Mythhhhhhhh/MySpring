@@ -1,6 +1,6 @@
 package cn.myth.springframework.beans.factory.config;
 
-import cn.myth.springframework.beans.factory.PropertyValues;
+import cn.myth.springframework.beans.PropertyValues;
 
 /**
  * Object bean 替换为 Class，这样就可以把 Bean 的实例化操作放到容器中处理了

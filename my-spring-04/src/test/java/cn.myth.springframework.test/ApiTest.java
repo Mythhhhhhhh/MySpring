@@ -1,19 +1,14 @@
 package cn.myth.springframework.test;
 
-import cn.myth.springframework.beans.factory.PropertyValue;
-import cn.myth.springframework.beans.factory.PropertyValues;
+import cn.myth.springframework.beans.PropertyValue;
+import cn.myth.springframework.beans.PropertyValues;
 import cn.myth.springframework.beans.factory.config.BeanDefinition;
 import cn.myth.springframework.beans.factory.config.BeanReference;
 import cn.myth.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.myth.springframework.test.bean.UserDao;
 import cn.myth.springframework.test.bean.UserService;
 import cn.myth.springframework.test.bean.UserService2;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public class ApiTest {
 

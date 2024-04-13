@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="userDao" class="cn.myth.springframework.test.bean.UserDao2" init-method="initDataMethod" destroy-method="destroyDataMethod"/>
+
+</beans>

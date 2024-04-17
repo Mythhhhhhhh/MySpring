@@ -40,4 +40,14 @@ public class ApiTest {
         System.out.println("测试结果：" + userService.queryUserInfo());
     }
 
+    @Test
+    public void test_factory_bean2() {
+        // 1.初始化 BeanFactory
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+        // 2. 调用代理方法
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+        System.out.println("测试结果：" + userService.queryUserInfo());
+    }
+
 }

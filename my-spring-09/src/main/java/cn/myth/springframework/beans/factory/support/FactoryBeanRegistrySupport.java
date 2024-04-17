@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *  doGetObjectFromFactoryBean是具体的获取 FactoryBean#getObject()方法，
  *  因为既有缓存的处理也有对象的获取，所以额外提供了getObjectFromFactoryBean进行逻辑包装，这部分的操作方式是不和你日常做的业务逻辑开发非常相似。从Redis取数据，如果为空就从数据库获取并写入Redis
  */
-public class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
+public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
     /**
      *  Cache of singleton objects created by FactoryBeans: FactoryBean name --> object

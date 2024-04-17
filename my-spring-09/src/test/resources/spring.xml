@@ -10,4 +10,11 @@
 
     <bean id="proxyUserDao" class="cn.myth.springframework.test.bean.ProxyBeanFactory"/>
 
+    <bean id="userService2" class="cn.myth.springframework.test.bean.UserService">
+        <property name="uId" value="10002"/>
+        <property name="company" value="腾讯"/>
+        <property name="location" value="深圳"/>
+        <property name="userDao" ref="proxyUserDao"/>
+    </bean>
+
 </beans>

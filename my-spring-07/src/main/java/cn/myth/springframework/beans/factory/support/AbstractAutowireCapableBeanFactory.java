@@ -11,7 +11,6 @@ import cn.myth.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.myth.springframework.beans.factory.config.BeanDefinition;
 import cn.myth.springframework.beans.factory.config.BeanPostProcessor;
 import cn.myth.springframework.beans.factory.config.BeanReference;
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -118,10 +117,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     @Override
-    public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanNam) throws BeansException {
+    public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) throws BeansException {
         Object result = existingBean;
         for (BeanPostProcessor postProcessor : getBeanPostProcessors()) {
-            Object current = postProcessor.postProcessBeforeInitialization(result, beanNam);
+            Object current = postProcessor.postProcessBeforeInitialization(result, beanName);
             if (current == null) return result;
             result = current;
         }
@@ -129,10 +128,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     @Override
-    public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanNam) throws BeansException {
+    public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName) throws BeansException {
         Object result = existingBean;
         for (BeanPostProcessor postProcessor : getBeanPostProcessors()) {
-            Object current = postProcessor.postProcessAfterInitialization(result, beanNam);
+            Object current = postProcessor.postProcessAfterInitialization(result, beanName);
             if (current == null) return result;
             result = current;
         }

@@ -26,7 +26,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             if (null != bean) {
                 return bean;
             }
-
+            // 实例化 Bean
             bean = createBeanInstance(beanDefinition, beanName, args);
             // 给Bean填充属性
             applyPropertyValues(beanName, bean, beanDefinition);

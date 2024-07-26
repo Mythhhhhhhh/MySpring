@@ -132,10 +132,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     @Override
-    public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanNam) throws BeansException {
+    public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) throws BeansException {
         Object result = existingBean;
         for (BeanPostProcessor postProcessor : getBeanPostProcessors()) {
-            Object current = postProcessor.postProcessBeforeInitialization(result, beanNam);
+            Object current = postProcessor.postProcessBeforeInitialization(result, beanName);
             if (current == null) return result;
             result = current;
         }
@@ -143,10 +143,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     @Override
-    public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanNam) throws BeansException {
+    public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName) throws BeansException {
         Object result = existingBean;
         for (BeanPostProcessor postProcessor : getBeanPostProcessors()) {
-            Object current = postProcessor.postProcessAfterInitialization(result, beanNam);
+            Object current = postProcessor.postProcessAfterInitialization(result, beanName);
             if (current == null) return result;
             result = current;
         }

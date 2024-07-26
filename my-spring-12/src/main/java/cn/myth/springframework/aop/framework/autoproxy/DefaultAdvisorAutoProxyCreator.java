@@ -6,7 +6,6 @@ import cn.myth.springframework.aop.framework.ProxyFactory;
 import cn.myth.springframework.beans.BeansException;
 import cn.myth.springframework.beans.factory.BeanFactory;
 import cn.myth.springframework.beans.factory.BeanFactoryAware;
-import cn.myth.springframework.beans.factory.config.BeanPostProcessor;
 import cn.myth.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import cn.myth.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.aopalliance.aop.Advice;
@@ -41,8 +40,10 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
 
+        // 判断当前bean是否是基础类型：是否实现了Advice，Pointcut，Advisor
         if(isInfrastructureClass(beanClass)) return null;
 
+        // 获取切面拦截器
         Collection<AspectJExpressionPointcutAdvisor> advisors = beanFactory.getBeansOfType(AspectJExpressionPointcutAdvisor.class).values();
 
         for (AspectJExpressionPointcutAdvisor advisor : advisors) {

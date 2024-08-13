@@ -48,6 +48,9 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
             singletonObject = earlySingletonObjects.get(beanName);
             // 判断二级缓存中是否有对象，这个对象就是代理对象，因为只有代理对象才会放到三级缓存中
             if (null == singletonObject) {
+                // 从singletonFactories三级缓存根据beanName得到一个ObjectFactory
+                // 然后再执行ObjectFactory，也就是执行getEarlyBeanReference方法
+                // 此时会得到一个原始对象经AOP之后代理的对象，然后把这个代理对象放入二级缓存中
                 ObjectFactory<?> singletonFactory = singletonFactories.get(beanName);
                 if (singletonFactory != null) {
                     singletonObject = singletonFactory.getObject();

@@ -35,6 +35,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             // 处理循环依赖，将实例化后的Bean对象提前放入缓存中暴露出来
             if (beanDefinition.isSingleton()) {
                 Object finalBean = bean;
+                // 再Bean实例化后添加三级缓存addSingletonFactory
+                // 注意存入singletonFactories时并不会执行lambda表达式，也就是不会执行getEarlyBeanReference方法
                 addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, beanDefinition, finalBean));
             }
 
@@ -58,13 +60,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         // 判断 SCOPE_SINGLETON, SCOPE_PROTOTYPE
         Object exposedObject = bean;
         if (beanDefinition.isSingleton()) {
-            // 获取代理对象
+            // 在最后判断单例时 调用 getSingleton返回对象并放入一级缓存中
             exposedObject = getSingleton(beanName);
             registerSingleton(beanName, exposedObject);
         }
         return exposedObject;
     }
 
+    // 获取提前代理的对象
     protected Object getEarlyBeanReference(String beanName, BeanDefinition beanDefinition, Object bean) {
         Object exposedObject = bean;
         for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
